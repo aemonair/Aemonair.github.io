@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux下C语言的快速入手 | Aemonair</title><meta name="description" content="首先，我们有如下输出hello,world!程序：  hello.c12345678910#include &lt;stdio.h&gt;#if 1&#x2F;&#x2F;argument count &#x2F;&#x2F;argument valueint main(int argc, char **argv)&amp;#123;    printf(&quot;hello, world!\n&amp;qu"><meta name="keywords" content="Linux,C"><meta name="author" content="Air,v.aemonair@gmail.com"><meta name="copyright" content="Air"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/favicon.air.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://www.google-analytics.com"/><link rel="preconnect" href="https://hm.baidu.com"/><link rel="dns-prefetch" href="https://hm.baidu.com"/><link rel="preconnect" href="http://ta.qq.com"/><link rel="dns-prefetch" href="http://ta.qq.com"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Linux下C语言的快速入手"><meta name="twitter:description" content="首先，我们有如下输出hello,world!程序：  hello.c12345678910#include &lt;stdio.h&gt;#if 1&#x2F;&#x2F;argument count &#x2F;&#x2F;argument valueint main(int argc, char **argv)&amp;#123;    printf(&quot;hello, world!\n&amp;qu"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/20200429124957_linux.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Linux下C语言的快速入手"><meta property="og:url" content="http://aemonair.github.io/2016/05/31/Linux_C_Quick_Start/"><meta property="og:site_name" content="Aemonair"><meta property="og:description" content="首先，我们有如下输出hello,world!程序：  hello.c12345678910#include &lt;stdio.h&gt;#if 1&#x2F;&#x2F;argument count &#x2F;&#x2F;argument valueint main(int argc, char **argv)&amp;#123;    printf(&quot;hello, world!\n&amp;qu"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/20200429124957_linux.jpg"><meta property="article:published_time" content="2016-05-31T15:13:01.000Z"><meta property="article:modified_time" content="2020-04-29T05:07:12.400Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://aemonair.github.io/2016/05/31/Linux_C_Quick_Start/"><link rel="prev" title="数据结构C语言实现1.单链表" href="http://aemonair.github.io/2016/05/31/Data_Structure_01_Single_Linked_List/"><link rel="next" title="MarkDown On Sublime Text" href="http://aemonair.github.io/2016/05/10/MarkDown/"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?05af6f3318bdeb655af3eaa698a89a71";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-160152781-1', 'auto');
+ga('send', 'pageview');
+</script><script src="https://tajs.qq.com/stats?sId=66528155" charset="UTF-8"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.air.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">8</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> 清单</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、基本操作"><span class="toc-number">1.</span> <span class="toc-text">一、基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编译的具体步骤："><span class="toc-number">1.1.</span> <span class="toc-text">编译的具体步骤：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ⅰ-预处理"><span class="toc-number">1.2.</span> <span class="toc-text">Ⅰ.预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ⅱ-编译"><span class="toc-number">1.3.</span> <span class="toc-text">Ⅱ.编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ⅲ-汇编"><span class="toc-number">1.4.</span> <span class="toc-text">Ⅲ.汇编</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ⅳ-链接"><span class="toc-number">1.5.</span> <span class="toc-text">Ⅳ .链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、查看基本信息"><span class="toc-number">2.</span> <span class="toc-text">二、查看基本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、基本基础"><span class="toc-number">3.</span> <span class="toc-text">三、基本基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#总结：此文只是简单的对Linux下C语言的开发快速入手进行简单介绍。"><span class="toc-number">3.1.</span> <span class="toc-text">总结：此文只是简单的对Linux下C语言的开发快速入手进行简单介绍。</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/20200429124957_linux.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Aemonair</a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> 清单</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Linux下C语言的快速入手</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2016-05-31 23:13:01"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2016-05-31</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-29 13:07:12"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-04-29</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Study/">Study</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><hr>
+<p>首先，我们有如下输出<code>hello,world!</code>程序：</p>
+<ul>
+<li>hello.c<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plain">#include &lt;stdio.h&gt;<br>#if 1<br>&#x2F;&#x2F;argument count <br>&#x2F;&#x2F;argument value<br>int main(int argc, char **argv)<br>&#123;<br>    printf(&quot;hello, world!\n&quot;);<br>    return 5;<br>&#125;<br>#endif<br></code></pre></td></tr></table></figure>
+<h3 id="一、基本操作"><a href="#一、基本操作" class="headerlink" title="一、基本操作"></a>一、基本操作</h3>程序代码与Windows平台的程序并无不同，只是在不同的环境中具有不同的约定。<br>在Linux环境下，不以文件拓展名作为区分文件的标准。</li>
+</ul>
+<ul>
+<li>编译：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# gcc hello.c -o hello<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>运行：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# .&#x2F;hello <br>hello, world!<br></code></pre></td></tr></table></figure>
+<h4 id="编译的具体步骤："><a href="#编译的具体步骤：" class="headerlink" title="编译的具体步骤："></a>编译的具体步骤：</h4><h4 id="Ⅰ-预处理"><a href="#Ⅰ-预处理" class="headerlink" title="Ⅰ.预处理"></a>Ⅰ.预处理</h4><ul>
+<li>生成.i的文件：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# gcc -E hello.c -o hello.i<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# vim hello.i<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>使用  <code>vim</code>  或者任意编辑器打开<code>hello.i</code>可以看到是将头文件展开去掉注释等操作的预处理之后的文件。  </p>
+</blockquote>
+<hr>
+<h4 id="Ⅱ-编译"><a href="#Ⅱ-编译" class="headerlink" title="Ⅱ.编译"></a>Ⅱ.编译</h4><ul>
+<li>将预处理后的文件转换成汇编语言,生成文件.s：  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# gcc -S hello.i -o hello.s<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>打开hello.s可以看到，是输出<code>hello,worl!</code>的汇编代码。</p>
+</blockquote>
+<hr>
+<h4 id="Ⅲ-汇编"><a href="#Ⅲ-汇编" class="headerlink" title="Ⅲ.汇编"></a>Ⅲ.汇编</h4><ul>
+<li>将汇编代码变为目标代码(机器代码)生成.o的文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# gcc -c hello.s -o hello.o<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>这时用file命令查看hello.o则发现：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# file hello.o<br>hello.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped<br></code></pre></td></tr></table></figure>
+<p>此时<code>hello.o</code>是一个二进制64位的可重定位的目标文件。</p>
+<h4 id="Ⅳ-链接"><a href="#Ⅳ-链接" class="headerlink" title="Ⅳ .链接"></a>Ⅳ .链接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# gcc hello.o -o hello<br></code></pre></td></tr></table></figure>
+<p>生成可执行文件。</p>
+<hr>
+<h3 id="二、查看基本信息"><a href="#二、查看基本信息" class="headerlink" title="二、查看基本信息"></a>二、查看基本信息</h3><ul>
+<li><p>查看当前的文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# ls -l  hello*<br>-rwxr-xr-x 1 root root  6728 May 27 14:40 hello<br>-rw-r--r-- 1 root root   148 May 27 13:25 hello.c<br>-rw-r--r-- 1 root root 17187 May 27 13:26 hello.i<br>-rw-r--r-- 1 root root  1504 May 27 13:30 hello.o<br>-rw-r--r-- 1 root root   497 May 27 13:28 hello.s<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>file命令，</p>
+<blockquote>
+<p>得以辨识该文件的类型。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# file hello.c<br>hello.c: C source, ASCII text    # C语言ASCII码源文件<br>root@aemonair:~&#x2F;tmp# file hello.i<br>hello.i: C source, ASCII text<br>root@aemonair:~&#x2F;tmp# file hello.s<br>hello.s: assembler source, ASCII text # ASCII码汇编文件<br>root@aemonair:~&#x2F;tmp# file hello.o<br>hello.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped # 二进制64位的可重定位的目标文件<br>root@aemonair:~&#x2F;tmp# file hello<br>hello: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter &#x2F;lib64&#x2F;ld-linux-x86-64.so.2, for GNU&#x2F;Linux 2.6.32, BuildID[sha1]&#x3D;1420b36f9837a8d7ba2f4a9ec6b968d16c403d23, not stripped  #可执行的二进制文件<br></code></pre></td></tr></table></figure>
+<ul>
+<li>objdump<blockquote>
+<p>objdump命令是Linux下的反汇编目标文件或者可执行文件的命令</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# objdump -s -d hello.o<br><br>hello.o:     file format elf64-x86-64<br><br>Contents of section .text:<br> 0000 554889e5 4883ec10 897dfc48 8975f0bf  UH..H....&#125;.H.u..<br> 0010 00000000 e8000000 00b80500 0000c9c3  ................<br>Contents of section .rodata:<br> 0000 68656c6c 6f2c2077 6f726c64 2100      hello, world!.  <br>Contents of section .comment:<br> 0000 00474343 3a202844 65626961 6e20352e  .GCC: (Debian 5.<br> 0010 332e312d 38292035 2e332e31 20323031  3.1-8) 5.3.1 201<br> 0020 36303230 3500                        60205.          <br>Contents of section .eh_frame:<br> 0000 14000000 00000000 017a5200 01781001  .........zR..x..<br> 0010 1b0c0708 90010000 1c000000 1c000000  ................<br> 0020 00000000 20000000 00410e10 8602430d  .... ....A....C.<br> 0030 065b0c07 08000000                    .[......        <br><br>Disassembly of section .text:<br><br>0000000000000000 &lt;main&gt;:<br>   0:	55                   	push   %rbp<br>   1:	48 89 e5             	mov    %rsp,%rbp<br>   4:	48 83 ec 10          	sub    $0x10,%rsp<br>   8:	89 7d fc             	mov    %edi,-0x4(%rbp)<br>   b:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)<br>   f:	bf 00 00 00 00       	mov    $0x0,%edi<br>  14:	e8 00 00 00 00       	callq  19 &lt;main+0x19&gt;<br>  19:	b8 05 00 00 00       	mov    $0x5,%eax<br>  1e:	c9                   	leaveq <br>  1f:	c3                   	retq<br></code></pre></td></tr></table></figure>
+
+<p>-s 除了显示test的全部Header信息，还显示他们对应的十六进制文件代码<br>-d   反汇编test中的需要执行指令的那些section  </p>
+<ul>
+<li>readelf命令<blockquote>
+<p>readelf用来显示ELF格式目标文件的信息.可通过参数选项来控制显示哪些特定信息。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# readelf -s -d hello.o<br><br>Symbol table &#39;.symtab&#39; contains 11 entries:<br>   Num:    Value          Size Type    Bind   Vis      Ndx Name<br>     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND <br>     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hello.c<br>     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 <br>     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 <br>     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 <br>     5: 0000000000000000     0 SECTION LOCAL  DEFAULT    5 <br>     6: 0000000000000000     0 SECTION LOCAL  DEFAULT    7 <br>     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    8 <br>     8: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 <br>     9: 0000000000000000    32 FUNC    GLOBAL DEFAULT    1 main<br>    10: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND puts<br></code></pre></td></tr></table></figure>
+
+<h3 id="三、基本基础"><a href="#三、基本基础" class="headerlink" title="三、基本基础"></a>三、基本基础</h3><ul>
+<li>返回值 </li>
+<li>若要在<code>Bash</code>中获得函数运行的返回值，则在终端中输入以下代码并回车。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">echo $?<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# echo $?<br>5<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>一般的正确返回则返回0;这里的5是我们为了查看效果。<br>若我们再执行一次<code>echo $?</code>则会是多少呢？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# echo $?<br>0<br></code></pre></td></tr></table></figure>
+<p>因为我们这时的返回值是成功执行了<code>echo</code>的成功返回值，故为0。</p>
+<ul>
+<li>main函数参数：<br><code>int argc</code> ：参数的个数<br><code>char **argv</code> : 参数的值 //也可写成<code>char *argv[]</code>;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plain">&#x2F;*argtest.c*&#x2F;<br>#include &lt;stdio.h&gt;<br>&#x2F;&#x2F;argument count <br>&#x2F;&#x2F;argument value<br>int main(int argc, char **argv)<br>&#123;<br>    int i &#x3D; 0 ;<br>    printf(&quot;argc: %d\n&quot;,argc);<br>    for(i &#x3D; 0; i &lt; argc ;++i)<br>    &#123;<br>        printf(&quot;argv[%d]:%s\n&quot;,i,argv[i]);<br>    &#125;<br>    return 0;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>编译源文件为可执行文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# gcc argtest.c -o argtest<br></code></pre></td></tr></table></figure>
+<p><code>./argtest.c 1 2 c def $</code> 运行得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plain">root@aemonair:~&#x2F;tmp# .&#x2F;argtest 1 2 c def $ <br>argc: 6<br>argv[0]:.&#x2F;argtest<br>argv[1]:1<br>argv[2]:2<br>argv[3]:c<br>argv[4]:def<br>argv[5]:$<br></code></pre></td></tr></table></figure>
+<p>  可见，argc是命令行传入的参数个数，argv是一个二位指针，可以通过[ ]将其值<code>%s</code>打印出来。<br>  而且，argv[0]即是程序名本身。</p>
+<ul>
+<li>条件编译：</li>
+<li>此时，codes2的内容将不会运行。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span><br>    <span class="hljs-comment">//codes </span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span><br>    <span class="hljs-comment">//cods 2</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+可用来作为注释或程序运行时的条件决策。</li>
+</ul>
+<hr>
+<h4 id="总结：此文只是简单的对Linux下C语言的开发快速入手进行简单介绍。"><a href="#总结：此文只是简单的对Linux下C语言的开发快速入手进行简单介绍。" class="headerlink" title="总结：此文只是简单的对Linux下C语言的开发快速入手进行简单介绍。"></a>总结：此文只是简单的对<strong>Linux</strong>下<strong>C语言</strong>的开发快速入手进行简单介绍。</h4></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:v.aemonair@gmail.com">Air</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://aemonair.github.io/2016/05/31/Linux_C_Quick_Start/">http://aemonair.github.io/2016/05/31/Linux_C_Quick_Start/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Aemonair.github.io" target="_blank">Aemonair</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/C/">C</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/20200429124647_green_tree.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2016/05/31/Data_Structure_01_Single_Linked_List/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/20200429113842_DataStruct_Linked_list1.jpg" onerror="onerror=null;src='/img/404.link.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据结构C语言实现1.单链表</div></div></a></div><div class="next-post pull_right"><a href="/2016/05/10/MarkDown/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/aemonair/ImageHosting/images/20200429125643_blank-bloom-blossom-business-356372.jpg" onerror="onerror=null;src='/img/404.link.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MarkDown On Sublime Text</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Air</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">4th ~</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">简</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
